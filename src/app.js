@@ -1,10 +1,11 @@
-const movies = require("../movies.json");
-const { validateMovie, validatePartialMovie } = require("./schema/movieSchema");
-const crypto = require("node:crypto");
+import express from "express";
+import cors from "cors";
+import { randomUUID } from "node:crypto";
+import { validateMovie, validatePartialMovie } from "./schema/movieSchema.js";
+import { readJson } from "./utils/readJson.js";
 
-const express = require("express");
-const cors = require("cors");
 const app = express();
+const movies = readJson("../../movies.json");
 
 app.use(express.json());
 app.use(cors());
@@ -50,7 +51,7 @@ app.post("/api/v1/movies", (req, res) => {
 		});
 
 	const newMovie = {
-		id: crypto.randomUUID(),
+		id: randomUUID(),
 		...result.data,
 	};
 
@@ -78,8 +79,6 @@ app.patch("/api/v1/movies/:id", (req, res) => {
 		...movies[movieIndex],
 		...result.data,
 	};
-
-	console.log(movies[movieIndex]);
 
 	movies[movieIndex] = updateMovie;
 

@@ -1,0 +1,34 @@
+### ! Obtener todas las peliculas 
+GET http://localhost:3001/api/v1/movies
+
+### ! Obtener una pelicula por el id
+GET http://localhost:3001/api/v1/movies/89b8806a-65d6-42f8-aa0d-bfbe7320b36e
+
+### ! Obtener todas las peliculas por genero
+GET http://localhost:3001/api/v1/movies?genre=adventure
+
+### ! Crear una pelicula
+POST  http://localhost:3001/api/v1/movies
+Content-Type: application/json
+
+{
+    "title": "Title example 2",
+    "year": 2000,
+    "director": "director example 2",
+    "duration": 69,
+    "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+    "genre": ["Action"], 
+    "rate": 5
+}
+
+### ! Actualizar parte de una pelicula
+PATCH   http://localhost:3001/api/v1/movies/d775ae17-68fd-4c14-a47c-9bf6396d3ad6
+Content-Type: application/json
+
+{
+    "title": "hola mundo xxx",
+    "year": 1998
+}
+
+### ! eliminar un recurso 
+DELETE http://localhost:3001/api/v1/movies/7a47c1d8-0a4b-4123-aa20-7c102f38eb8e
